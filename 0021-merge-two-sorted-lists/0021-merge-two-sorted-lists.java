@@ -36,7 +36,6 @@ class Solution {
             result = new ListNode(pq.poll(), start);
             start = result;
         }
-
         return result;
     }
 }
