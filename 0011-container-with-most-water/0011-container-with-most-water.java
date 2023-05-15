@@ -6,9 +6,8 @@ class Solution {
         int startIdx = 0, endIdx = height.length - 1, output = 0;
         while (startIdx < endIdx) {
             int xInterval = endIdx - startIdx;
-            int yInterval = height[endIdx] > height[startIdx] ? height[startIdx] : height[endIdx];
-            if (xInterval * yInterval > output)
-                output = xInterval * yInterval;
+            int yInterval = Math.min(height[endIdx], height[startIdx]);
+            output = Math.max(xInterval * yInterval, output);
 
             if (height[startIdx] <= height[endIdx])
                 startIdx++;
