@@ -14,7 +14,7 @@ class Solution {
     private final List<String> result = new ArrayList<>();
 
     public List<String> letterCombinations(String digits) {
-        if (digits.equals("")) {
+        if (digits.isBlank()) {
             return new ArrayList<>();
         }
         char[] numberCharacters = digits.toCharArray();
