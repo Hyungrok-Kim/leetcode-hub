@@ -1,15 +1,10 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int num : nums) {
-            if (map.get(num) != null) {
-                map.remove(num);
-            } else {
-                map.put(num, num);
-            }
+            int result = 0;
+        //even occurence will nullify
+        for(int i=0;i<nums.length;i++){
+            result ^= nums[i];
         }
-
-        Set<Integer> integers = map.keySet();
-        return integers.stream().findFirst().get();
+        return result;
     }
 }
