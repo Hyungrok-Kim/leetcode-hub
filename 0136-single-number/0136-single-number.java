@@ -1,10 +1,13 @@
 class Solution {
     public int singleNumber(int[] nums) {
-            int result = 0;
-        //even occurence will nullify
-        for(int i=0;i<nums.length;i++){
-            result ^= nums[i];
+        Set<Integer> result = new HashSet<>();
+        for (int num : nums) {
+            if (!result.contains(num)) {
+                result.add(num);
+            } else {
+                result.remove(num);
+            }
         }
-        return result;
+        return result.iterator().next();
     }
 }
