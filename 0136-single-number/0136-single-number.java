@@ -1,13 +1,15 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        List<String> result = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
-            if (result.contains(String.valueOf(num))) {
-                result.remove(String.valueOf(num));
+            if (map.get(num) != null) {
+                map.remove(num);
             } else {
-                result.add(String.valueOf(num));
+                map.put(num, num);
             }
         }
-        return Integer.parseInt(result.get(0));   
+
+        Set<Integer> integers = map.keySet();
+        return integers.stream().findFirst().get();
     }
 }
