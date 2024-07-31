@@ -12,11 +12,12 @@
 
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null) return list2;
-        else if (list2 == null) return list1;
-
+        if (list1 == null) {
+            return list2;
+        } else if (list2 == null) {
+            return list1;
+        }
         PriorityQueue<Integer> pq = new PriorityQueue(Collections.reverseOrder());
-
         while (list1 != null || list2 != null) {
             if (list1 != null) {
                 pq.offer(list1.val);
@@ -27,9 +28,7 @@ class Solution {
                 list2 = list2.next;
             }
         }
-
         Iterator i = pq.iterator();
-
         ListNode result = null;
         ListNode start = new ListNode(pq.poll());
         while(i.hasNext()) {
