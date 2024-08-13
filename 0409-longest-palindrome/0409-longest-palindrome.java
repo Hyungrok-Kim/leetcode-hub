@@ -10,7 +10,8 @@ class Solution {
         for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
             if (entry.getValue() % 2 == 0) {
                 result += entry.getValue();
-            } else {
+            }
+            if (entry.getValue() % 2 == 1) {
                 result += entry.getValue() - 1;
                 isOddExist = true;
             }
