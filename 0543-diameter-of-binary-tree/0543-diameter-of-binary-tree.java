@@ -14,26 +14,21 @@
  * }
  */
 class Solution {
+    
+    private int diameter = 0;
+    
     public int diameterOfBinaryTree(TreeNode treeNode) {
-        int result = this.getDepth(treeNode.left, 1) + this.getDepth(treeNode.right, 1);
-        int leftResult = result;
-        int rightResult = result;
-        if (treeNode.left != null) {
-            leftResult = Math.max(result, diameterOfBinaryTree(treeNode.left));
-        }
-        if (treeNode.right != null) {
-            rightResult = Math.max(result, diameterOfBinaryTree(treeNode.right));
-        }
-        if (result > leftResult && result > rightResult) {
-            return result;
-        }
-        return Math.max(leftResult, rightResult);
+        this.getDepth(treeNode);
+        return diameter;
     }
 
-    private int getDepth(TreeNode treeNode, int depth) {
+    private int getDepth(TreeNode treeNode) {
         if (treeNode == null) {
-            return depth - 1;
+            return 0;
         }
-        return Math.max(getDepth(treeNode.left, depth + 1), getDepth(treeNode.right, depth + 1));
+        int leftDepth = getDepth(treeNode.left);
+        int rightDepth = getDepth(treeNode.right);
+        diameter = Math.max(diameter, leftDepth + rightDepth);
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 }
