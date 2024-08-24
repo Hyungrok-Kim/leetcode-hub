@@ -14,20 +14,25 @@
  * }
  */
 class Solution {
-    TreeSet<Integer> ts = new TreeSet<>();
-
-    public void searchDepth(TreeNode target, int depth) {
-        if (target.left == null && target.right == null) ts.add(depth);
-        else {
-            if (target.left != null) searchDepth(target.left, depth + 1);
-            if (target.right != null) searchDepth(target.right, depth + 1);
-        }
-    }
-
     public int maxDepth(TreeNode root) {
-        if (root == null) return 0;
-        searchDepth(root, 1);
-
-        return ts.pollLast();
+        if (root == null) {
+            return 0;
+        }
+        int leftResult = 1;
+        int rightResult = 1;
+        if (root.left != null) {
+            leftResult = this.getDepth(root.left, 1);
+        }
+        if (root.right != null) {
+            rightResult = this.getDepth(root.right, 1);
+        }
+        return Math.max(leftResult, rightResult);
+    }
+    
+    private int getDepth(TreeNode targetNode, int depth) {
+        if (targetNode == null) {
+            return depth;
+        }
+        return Math.max(this.getDepth(targetNode.left, depth + 1), this.getDepth(targetNode.right, depth + 1));
     }
 }
