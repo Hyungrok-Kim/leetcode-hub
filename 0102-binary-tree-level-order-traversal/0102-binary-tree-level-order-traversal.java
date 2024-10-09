@@ -19,9 +19,6 @@ class Solution {
         if (root == null) {
             return results;
         }
-        List<Integer> setup = new ArrayList<>();
-        setup.add(root.val);
-        results.add(setup);
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()) {
@@ -29,18 +26,17 @@ class Solution {
             List<Integer> orders = new ArrayList<>();
             for (int i = 0; i < queueSize; ++i) {
                 TreeNode target = queue.poll();
+                orders.add(target.val);
                 if (target.left != null) {
                     queue.add(target.left);
-                    orders.add(target.left.val);
+
                 }
                 if (target.right != null) {
                     queue.add(target.right);
-                    orders.add(target.right.val);
+
                 }
             }
-            if (!orders.isEmpty()) {
-                results.add(orders);
-            }
+            results.add(orders);
         }
         return results;
     }
